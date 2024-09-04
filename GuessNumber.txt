@@ -1,0 +1,61 @@
+import java.util.*;
+
+public class Main {
+    static int binarySearch(int guess , int target){
+           if(guess==target)
+               return 0 ;
+           else if(guess>target)
+               return 1;
+           else
+               return -1 ;
+    }
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.println("******************************* Lets Start *******************************");
+        System.out.println("  Pick Your Level :) ");
+        System.out.println("      Level-1 From Range 1-10 You Got three Chances");
+        System.out.println("      Level-2 From Range 1-100 You Got six Chances");
+        System.out.println("      Level-3 From Range 1-1000 You Got nine Chances");
+      int n = in.nextInt();
+      System.out.println("*** Instruction ***");
+      System.out.println("Every time you Enter a Number i will be informing you weather your guess is High , Low Or exact number");
+      int range=0;
+      int chances = 0 ;
+      while (true) {
+          if (n == 1) {
+              range = (int) (Math.random() * 11);
+              chances = 3 ;
+              break;
+          } else if (n == 2) {
+              range = (int) (Math.random() * 101);
+              chances = 6 ;
+              break;
+          } else if (n == 3) {
+              range = (int) (Math.random() * 1001);
+              chances = 9 ;
+              break;
+          } else
+              System.out.println("OOPS!! Choose the Correct Level Buddy!!");
+      }
+      boolean f = false ;
+        while(chances>0){
+            System.out.println("Enter your Guess " + chances + " chances remaining");
+            int guess = in.nextInt();
+            int ans = binarySearch(guess,range);
+            if(ans==0){
+                System.out.println("Great!! You Won :)");
+                f = true ;
+                break;
+            }
+            else if(ans==1)
+                System.out.println("Your Guess is Higher than Target buddy!! ");
+            else
+                System.out.println("Your Guess is Lower than Target buddy!!");
+            chances-- ;
+        }
+        if(f==false)
+            System.out.println(" :( You Lost !!");
+        System.out.println("Correct Guess is : "+range);
+
+    }
+}
